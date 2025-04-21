@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <!-- Bootstrap Icons  -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+    <title>Quản lý tài khoản người dùng</title>
+    <!-- Custom CSS -->
+    <style>
+      body {
+        background-color: #f5f5f5;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+      }
+      .header {
+        background-color: #1a2b5f;
+        color: white;
+        padding: 10px 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .header .logo {
+        margin-right: 10px;
+      }
+      .header .icon {
+        margin-left: 10px;
+      }
+      .header h1 {
+        margin: 0;
+        font-size: 1.5rem;
+        margin-right: 5px; /* Giảm khoảng cách giữa logo và CX */
+      }
+      .header .d-flex.align-items-center:nth-child(1) .badge {
+        margin-left: 5px; /* Giảm khoảng cách giữa CX và logo */
+      }
+      .header .d-flex.align-items-center:nth-child(2) {
+        margin-left: 5px; /* Loại bỏ khoảng cách giữa CX và các icon */
+      }
+      .header .d-flex.align-items-center:nth-child(2) .btn {
+        padding: 5px;
+        margin-right: 2px; /* Giảm khoảng cách giữa các icon */
+      }
+      .user-info {
+        display: flex;
+        align-items: center;
+        margin-left: auto;
+      }
+      .user-info img {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        margin-right: 10px;
+      }
+      .form-section,
+      .table-section {
+        background-color: white;
+        padding: 20px;
+        margin: 20px 0;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+      .form-section h2,
+      .table-section h2 {
+        font-size: 1.25rem;
+        margin-bottom: 20px;
+      }
+      .form-control,
+      .form-select {
+        height: 50px;
+        font-size: 1.1rem;
+      }
+      .form-label {
+        font-size: 1.1rem;
+      }
+      .btn-danger {
+        background-color: #dc3545;
+        border: none;
+        height: 50px;
+        font-size: 1.1rem;
+      }
+      .btn-warning {
+        background-color: #ffc107;
+        border: none;
+        height: 50px;
+        font-size: 1.1rem;
+      }
+      .container {
+        flex: 1;
+      }
+      .footer {
+        text-align: center;
+        padding: 10px;
+        font-size: 0.9rem;
+        color: #6c757d;
+        background-color: #f5f5f5;
+        width: 100%;
+        margin-top: auto;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header">
+      <!-- Logo viettel -->
+      <div class="logo">
+        <div class="d-flex align-items-center">
+          <h1 class="me-3" style="color: #ff0000">VIETTEL</h1>
+          <span class="badge bg-light text-dark">CX</span>
+        </div>
+      </div>
+      <!-- Icon -->
+      <div class="icon">
+        <div class="d-flex align-items-center">
+          <button class="btn btn-link text-white me-2">
+            <i class="bi bi-ticket-perforated"></i>
+          </button>
+          <button class="btn btn-link text-white me-2">
+            <i class="bi bi-person"></i>
+          </button>
+          <button class="btn btn-link text-white me-2">
+            <i class="bi bi-megaphone"></i>
+          </button>
+          <button class="btn btn-link text-white me-2">
+            <i class="bi bi-grid"></i>
+          </button>
+          <button class="btn btn-link text-white me-2">
+            <i class="bi bi-layout-wtf"></i>
+          </button>
+          <button class="btn btn-link text-white me-2">
+            <i class="bi bi-pc-display-horizontal"></i>
+          </button>
+          <button class="btn btn-link text-white me-2">
+            <i class="bi bi-grid-3x3-gap"></i>
+          </button>
+          <button class="btn btn-link text-white me-2">
+            <i class="bi bi-diagram-2"></i>
+          </button>
+          <button class="btn btn-link text-white me-2">
+            <i class="bi bi-bar-chart"></i>
+          </button>
+        </div>
+      </div>
+      <!-- Phần bên phải -->
+      <div class="user-info">
+        <button class="btn btn-link text-white me-2">
+          <i class="bi bi-gear"></i>
+        </button>
+        <button class="btn btn-link text-white position-relative me-2">
+          <i class="bi bi-bell"></i>
+          <span
+            class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+          >
+            60
+            <span class="visually-hidden">tin nhắn chưa đọc</span>
+          </span>
+        </button>
+        <button class="btn btn-link text-white position-relative me-2">
+          <i class="bi bi-globe"></i>
+        </button>
+        <!-- Thông số -->
+        <span class="text-white me-3">405K Đ</span>
+        <span class="text-white me-3" style="color: #ff0000">-172K C</span>
+        <!-- Hồ sơ người dùng -->
+        <div class="d-flex align-items-center">
+          <img
+            src="https://via.placeholder.com/30"
+            alt="Ảnh đại diện"
+            class="me-2"
+          />
+          <div>
+            <span class="text-white">Demo</span>
+            <small class="text-white">demoviettel@gmail.com</small>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Form Section -->
+    <div class="container">
+      <div class="form-section">
+        <h2>Quản lý tài khoản người dùng</h2>
+        <form id="userForm">
+          <div class="row mb-3">
+            <div class="col-md-6">
+              <label for="email" class="form-label">Email</label>
+              <input type="email" class="form-control" id="email" required />
+            </div>
+            <div class="col-md-6">
+              <label for="name" class="form-label">Tên</label>
+              <input type="text" class="form-control" id="name" required />
+            </div>
+          </div>
+          <div class="row mb-3">
+            <div class="col-md-6">
+              <label for="password" class="form-label">Mật khẩu</label>
+              <input
+                type="password"
+                class="form-control"
+                id="password"
+                required
+              />
+            </div>
+            <div class="col-md-6">
+              <label for="role" class="form-label">Phân quyền</label>
+              <select class="form-select" id="role" required>
+                <option value="">Chọn phân quyền</option>
+                <option value="admin">Admin</option>
+                <option value="user">User</option>
+                <option value="manager">Manager</option>
+              </select>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <button
+                type="button"
+                class="btn btn-warning w-100"
+                onclick="createUser()"
+              >
+                Tạo tài khoản
+              </button>
+            </div>
+            <div class="col-md-6">
+              <button
+                type="button"
+                class="btn btn-danger w-100"
+                onclick="saveUser()"
+              >
+                Lưu
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+
+      <!-- Table Section -->
+      <div class="table-section">
+        <h2>Danh sách tài khoản</h2>
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th>Email</th>
+              <th>Tên</th>
+              <th>Phân quyền</th>
+              <th>Hành động</th>
+            </tr>
+          </thead>
+          <tbody id="userTable">
+            <!-- Dữ liệu sẽ được thêm bằng JavaScript -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+      TMA AI MARKETING AGENCY ©2025 | Email:
+      <a
+        href="/cdn-cgi/l/email-protection"
+        class="__cf_email__"
+        data-cfemail="fac9cfcacad5c8cefadbd3d7dbc8d1dfced3d4ddccd494d9d5d7"
+        >[email&#160;protected]</a
+      >
+    </div>
+
+    <!-- JavaScript ban đầu để xử lý file -->
+    <script type="text/javascript">
+      var gk_isXlsx = false;
+      var gk_xlsxFileLookup = {};
+      var gk_fileData = {};
+      function filledCell(cell) {
+        return cell !== "" && cell != null;
+      }
+      function loadFileData(filename) {
+        if (gk_isXlsx && gk_xlsxFileLookup[filename]) {
+          try {
+            var workbook = XLSX.read(gk_fileData[filename], { type: "base64" });
+            var firstSheetName = workbook.SheetNames[0];
+            var worksheet = workbook.Sheets[firstSheetName];
+
+            // Convert sheet to JSON to filter blank rows
+            var jsonData = XLSX.utils.sheet_to_json(worksheet, {
+              header: 1,
+              blankrows: false,
+              defval: "",
+            });
+            // Filter out blank rows (rows where all cells are empty, null, or undefined)
+            var filteredData = jsonData.filter((row) => row.some(filledCell));
+
+            // Heuristic to find the header row by ignoring rows with fewer filled cells than the next row
+            var headerRowIndex = filteredData.findIndex(
+              (row, index) =>
+                row.filter(filledCell).length >=
+                filteredData[index + 1]?.filter(filledCell).length
+            );
+            // Fallback
+            if (headerRowIndex === -1 || headerRowIndex > 25) {
+              headerRowIndex = 0;
+            }
+
+            // Convert filtered JSON back to CSV
+            var csv = XLSX.utils.aoa_to_sheet(
+              filteredData.slice(headerRowIndex)
+            ); // Create a new sheet from filtered array of arrays
+            csv = XLSX.utils.sheet_to_csv(csv, { header: 1 });
+            return csv;
+          } catch (e) {
+            console.error(e);
+            return "";
+          }
+        }
+        return gk_fileData[filename] || "";
+      }
+    </script>
+    <!-- Bootstrap JS  -->
+    <script
+      data-cfasync="false"
+      src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"
+    ></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+      let users = [
+        {
+          email: "ducng@aimarketingvn.com",
+          name: "Duc Quan Nguyen",
+          role: "admin",
+        },
+        { email: "admin@aimarketingvn.com", name: "Admin User", role: "admin" },
+        { email: "user@aimarketingvn.com", name: "Regular User", role: "user" },
+        {
+          email: "manager@aimarketingvn.com",
+          name: "trần lê quản lý",
+          role: "manager",
+        },
+        {
+          email: "longhoang@aimarketingvn.com",
+          name: "Long Hoang",
+          role: "admin",
+        },
+        {
+          email: "hoanglong0793@gmail.com",
+          name: "Long quản lý",
+          role: "manager",
+        },
+        {
+          email: "jackiehoang0793@gmail.com",
+          name: "Long người dùng",
+          role: "user",
+        },
+      ];
+
+      let editIndex = -1;
+
+      function renderTable() {
+        const tableBody = document.getElementById("userTable");
+        tableBody.innerHTML = "";
+        users.forEach((user, index) => {
+          const row = `
+                  <tr>
+                      <td>${user.email}</td>
+                      <td>${user.name}</td>
+                      <td>${user.role}</td>
+                      <td>
+                          <button class="btn btn-warning btn-sm" onclick="editUser(${index})">Sửa</button>
+                          <button class="btn btn-danger btn-sm" onclick="deleteUser(${index})">Xóa</button>
+                      </td>
+                  </tr>
+              `;
+          tableBody.innerHTML += row;
+        });
+      }
+
+      function createUser() {
+        const email = document.getElementById("email").value;
+        const name = document.getElementById("name").value;
+        const password = document.getElementById("password").value;
+        const role = document.getElementById("role").value;
+
+        if (email && name && password && role) {
+          users.push({ email, name, role });
+          renderTable();
+          document.getElementById("userForm").reset();
+        } else {
+          alert("Vui lòng điền đầy đủ thông tin!");
+        }
+      }
+
+      function editUser(index) {
+        editIndex = index;
+        const user = users[index];
+        document.getElementById("email").value = user.email;
+        document.getElementById("name").value = user.name;
+        document.getElementById("password").value = "";
+        document.getElementById("role").value = user.role;
+      }
+
+      function saveUser() {
+        if (editIndex === -1) return;
+        const email = document.getElementById("email").value;
+        const name = document.getElementById("name").value;
+        const password = document.getElementById("password").value;
+        const role = document.getElementById("role").value;
+
+        if (email && name && role) {
+          users[editIndex] = { email, name, role };
+          editIndex = -1;
+          renderTable();
+          document.getElementById("userForm").reset();
+        } else {
+          alert("Vui lòng điền đầy đủ thông tin!");
+        }
+      }
+
+      function deleteUser(index) {
+        if (confirm("Bạn có chắc muốn xóa tài khoản này?")) {
+          users.splice(index, 1);
+          renderTable();
+        }
+      }
+
+      // Render ban đầu
+      renderTable();
+    </script>
+    <script>
+      (function () {
+        function c() {
+          var b = a.contentDocument || a.contentWindow.document;
+          if (b) {
+            var d = b.createElement("script");
+            d.innerHTML =
+              "window.__CF$cv$params={r:'933dc9731b1a763d',t:'MTc0NTI0ODAwMy4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";
+            b.getElementsByTagName("head")[0].appendChild(d);
+          }
+        }
+        if (document.body) {
+          var a = document.createElement("iframe");
+          a.height = 1;
+          a.width = 1;
+          a.style.position = "absolute";
+          a.style.top = 0;
+          a.style.left = 0;
+          a.style.border = "none";
+          a.style.visibility = "hidden";
+          document.body.appendChild(a);
+          if ("loading" !== document.readyState) c();
+          else if (window.addEventListener)
+            document.addEventListener("DOMContentLoaded", c);
+          else {
+            var e = document.onreadystatechange || function () {};
+            document.onreadystatechange = function (b) {
+              e(b);
+              "loading" !== document.readyState &&
+                ((document.onreadystatechange = e), c());
+            };
+          }
+        }
+      })();
+    </script>
+  </body>
+</html>
